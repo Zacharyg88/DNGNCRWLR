@@ -8,10 +8,10 @@
 import Foundation
 
 
-
 class CharacterModel: NSObject {
     
     var name: String
+    var teaserText: String
     var physicalDescription: String
     var biography: String
     var traits: TraitsModel
@@ -21,8 +21,9 @@ class CharacterModel: NSObject {
     var weapon: WeaponModel
     var affects: [AffectModel]
     
-    init(name: String, physicalDescription: String, biography: String, traits: TraitsModel, skills: SkillsModel, inventory: [ItemModel], wallet: WalletModel, weapon: WeaponModel, affects: [AffectModel]) {
+    init(name: String, teaserText: String, physicalDescription: String, biography: String, traits: TraitsModel, skills: SkillsModel, inventory: [ItemModel], wallet: WalletModel, weapon: WeaponModel, affects: [AffectModel]) {
         self.name = name
+        self.teaserText = teaserText
         self.physicalDescription = physicalDescription
         self.biography = biography
         self.traits = traits
@@ -30,9 +31,18 @@ class CharacterModel: NSObject {
         self.inventory = inventory
         self.wallet = wallet
         self.weapon = weapon
-        self.affects = affects
+        self.affects = affects        
     }
     
+//    func getChoiceForInteraction(interactionID: String) -> [ChoiceModel] {
+//        var options: [ChoiceModel] = []
+//        for choice in choices {
+//            if choice.designation == interactionID {
+//                options.append(choice)
+//            }
+//        }
+//        return choices
+//    }
 }
 
 
