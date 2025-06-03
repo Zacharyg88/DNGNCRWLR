@@ -21,6 +21,42 @@ class StoryModel: NSObject {
 }
 
 struct SceneModel {
-    var id = UUID()
-    var 
+    var id: String
+    var displayText: String
+    var choices: [ChoiceModel]
+}
+
+
+struct ChoiceModel {
+    var id: String
+    var displayText: String
+    var checkType: CheckType
+    var threshold: Int
+    var successSceneID: String
+    var failureSceneID: String
+    
+    func onSelection() {
+        
+    }
+}
+
+
+enum CheckType {
+    case combat
+    case search
+    case build
+    case finesse
+    case speech
+    case channeling
+    case kinesthetics
+    case knowledge
+    case logic
+    case spirit
+    case might
+    case reflex
+    case keen
+    case charm
+    case fear
+    case dodge
+    
 }

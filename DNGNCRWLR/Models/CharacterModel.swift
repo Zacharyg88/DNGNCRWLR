@@ -20,6 +20,7 @@ class CharacterModel: NSObject {
     var wallet: WalletModel
     var weapon: WeaponModel
     var affects: [AffectModel]
+    var choices: [ChoiceModel]
     
     init(name: String, teaserText: String, physicalDescription: String, biography: String, traits: TraitsModel, skills: SkillsModel, inventory: [ItemModel], wallet: WalletModel, weapon: WeaponModel, affects: [AffectModel]) {
         self.name = name
@@ -34,15 +35,48 @@ class CharacterModel: NSObject {
         self.affects = affects        
     }
     
-//    func getChoiceForInteraction(interactionID: String) -> [ChoiceModel] {
-//        var options: [ChoiceModel] = []
-//        for choice in choices {
-//            if choice.designation == interactionID {
-//                options.append(choice)
-//            }
-//        }
-//        return choices
-//    }
+    func getChoiceForInteraction(interactionID: String) -> [ChoiceModel] {
+        let availableChoices = choices.filter { choice in
+            return choice.id == interactionID
+        }
+        return availableChoices
+    }
+    
+    func makeCheck(checkType: CheckType, threshold: Int) -> Bool {
+        var modifier: Int = 0
+        switch checkType {
+        case .build:
+            modifier = skills.build
+        case .combat:
+            modifier = skills.combat
+        case .search:
+            modifier = skills.search
+        case .channeling:
+            modifier = skills.channeling
+        case .kinesthetics:
+            modifier = skills.kinesthetics
+        case .knowledge:
+            modifier = skills.knowledge
+        case .logic:
+            modifier = traits.logic
+        case.spirit:
+            modifier = traits.spirit
+        case.might:
+            modifier = traits.might
+        case .reflex:
+            modifier = traits.reflex
+        case .keen:
+            modifier = traits.keen
+        case .charm:
+            modifier = traits.charm
+        case .fear:
+            modifier = traits.fear
+        default:
+            modifier = traits.dodge
+        }
+        
+        return (Int(arc4random_uniform(20)) + modifier) >= threshold
+    }
 }
 
 

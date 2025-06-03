@@ -234,20 +234,22 @@ in the world while continuing hsi pursuit of power.
 )
 
 
-var STChapters: [ChapterModel] = [
-    ChapterModel(name: "The Clearing", scenes: [
-        1: SceneModel(name: "Awakening", interactions: [
-            1: InteractionModel(name: "Awakening1",displayedText: """
+var STStory: StoryModel = StoryModel(
+    title: "Stolen Time",
+    data: STData,
+    scenes: [
+        SceneModel(id: "intro_1.0", displayText: """
 The darkness fades...
 
-An orange glow burns dull and opaque behind your closed eyes. The soft chirping of 
-songbirds and the whisper of a calm wind through a canopy of trees reaches your ears. 
-The air feels mildly warm and comfortable to your skin, and smells light and sweetly 
-of wildflowers. Soft moss and grass tickle your skin.
-
-""", choices: STData.chosenCharacter?.getChoiceForInteraction(interactionID: "Awakening1") ?? [])
-        ])
+An orange glow burns dull and opaque behind your closed eyes. The soft chirping of songbirds and the whisper of a calm wind through a canopy of trees reaches your ears. The air feels mildly warm and comfortable to your skin, and smells light and sweetly of wildflowers. Soft moss and grass tickle your skin. 
+""", choices: STData.chosenCharacter?.getChoiceForInteraction(interactionID: "intro_1.0") ?? [
+    ChoiceModel(id: "intro_1.0", displayText: "Open your eyes", toSceneID: "intro_1.1")
+]),
+        SceneModel(id: "intro_1.1", displayText: """
+    Looking around as you make your way to sitting, several things become very clear. One, you are incredibly sore and bruised, just the act of sitting up is painful and makes you wince. Two, you are surrounded by several others, you don’t have a clue who any of them are. They feel familiar but to the best of your knowledge, you don’t know anything about anyone in this group. Furthermore, you have no recollection of how you got to this field, nor how much time you are actually missing. Lastly, you find that you have no memory of who you are.
+""", choices: STData.chosenCharacter?.getChoiceForInteraction(interactionID: "intro_1.1") ?? [
+    ChoiceModel(id: "intro_1.1", displayText: "Try to recall your name", toSceneID: <#T##String#>)
+])
     ])
-]
 
 
